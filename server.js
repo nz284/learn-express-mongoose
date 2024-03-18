@@ -37,7 +37,9 @@ app.get('/home', (_, res) => {
 })
 
 app.get('/available', (_, res) => {
-  BooksStatus.show_all_books_status(res);
+  BooksStatus.show_all_books_status()
+    .then((data) => res.send(data))
+    .catch((_) => res.send('No available books found'));
 })
 
 app.get('/books', (_, res) => {
@@ -47,7 +49,9 @@ app.get('/books', (_, res) => {
 })
 
 app.get('/authors', (_, res) => {
-  Authors.show_all_authors(res);
+  Authors.show_all_authors()
+    .then((data) => res.send(data))
+    .catch((_) => res.send('No authors found'))
 })
 
 app.get('/book_dtls', (req, res) => {
